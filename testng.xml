@@ -1,0 +1,18 @@
+<suite name="Selenium TestNG Suite" parallel="tests" thread-count="5">
+
+    <test name="Selenium TestNG - 1">
+        <parameter name="browser" value="firefox" />
+        <parameter name="port" value="4446" />
+        <classes>
+            <class name="FirstTest" />
+        </classes>
+    </test>
+    <test name="Selenium TestNG - 2">
+        <parameter name="browser" value="chrome" />
+        <parameter name="port" value="4446" />
+        <classes>
+            <class name="FirstTest" />
+        </classes>
+    </test>
+
+</suite>
