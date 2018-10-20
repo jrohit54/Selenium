@@ -1,0 +1,20 @@
+	@Test
+	public void barCodeTest() throws IOException, NotFoundException, InterruptedException
+	{
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\jrohi\\Desktop\\rohit\\chromedriver.exe");
+		WebDriver driver= new ChromeDriver();
+		driver.get("https://barcode.tec-it.com/en/Code128?data=This%20is%20Rohit%20here");
+		
+		String barCodeUrl = driver.findElement(By.xpath("//*[@id=\"infoTarget\"]/div[1]/img")).getAttribute("src");
+        System.out.println("attribute is "+barCodeUrl);
+    
+        URL url=new URL(barCodeUrl);
+        BufferedImage read = ImageIO.read(url);
+        
+        BufferedImageLuminanceSource bufferedImageLuminanceSource = new BufferedImageLuminanceSource(read);
+        BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(bufferedImageLuminanceSource));
+        
+        Result decode = new MultiFormatReader().decode(binaryBitmap);
+        System.out.println("***"+decode);
+	}
+	
